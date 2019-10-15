@@ -1,0 +1,37 @@
+#shopkeepgif {
+  width: 192px;
+  image-rendering: pixelated; 
+  position: absolute;
+}
+#shopkeepicon {
+  height: 40%;
+}
+#shoptitle {
+  font-family: 'Muli', sans-serif;
+  text-align: center;
+}
+div.shopstockdata {
+  width: 64px;
+  height: 64px;
+  margin: 10px;
+}
+.shopstockdata {
+  display: inline-block;
+  -o-transition:.25s;
+  -ms-transition:.25s;
+  -moz-transition:.25s;
+  -webkit-transition:.25s;
+  transition:.25s;
+}
+.shopstockdata:hover {
+  background-color: hsla(148, 0%, 38%, .35);
+  color: hsla(0, 35%, 80%, .1);
+  cursor: pointer;
+}
+#shopcontent {
+  text-align: center;
+  margin: 4%;
+  width: 100%;
+  position: absolute;
+  left: -4%;
+}

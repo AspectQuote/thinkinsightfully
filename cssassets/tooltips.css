@@ -1,0 +1,128 @@
+.tooltipbasic {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipbasic .tooltiptextbasic {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltipbasic .tooltiptextbasic::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltipbasic:hover .tooltiptextbasic {
+  visibility: visible;
+  opacity: 1;
+} 
+
+
+
+
+
+/* Tooltip text */
+.shopstockdata {
+  position: relative;
+  display: inline-block;
+}
+.shopstockdata .shopstocktooltiptext {
+  visibility: hidden;
+  width: 256px; 
+  background-color: #555;
+  color: #000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: -50%;
+  right: 105%; 
+  color:white;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* Tooltip arrow */
+.shopstockdata .shopstocktooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 20%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #555;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.shopstockdata:hover .shopstocktooltiptext {
+  visibility: visible;
+  opacity: .9;
+}
+/*-------------------------- */
+.inventoryslot .inventorytooltiptext {
+  visibility: hidden;
+  width: 512px; 
+  background-color: #000;
+  color: #000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: -180%;
+  right: 105%; 
+  color:white;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 13px;
+  font-style: italic;
+}
+/* Tooltip arrow */
+.inventoryslot .inventorytooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 75%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #000;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.inventoryslot:hover .inventorytooltiptext {
+  visibility: visible;
+  opacity: .9;
+}

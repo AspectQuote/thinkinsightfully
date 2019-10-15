@@ -1,0 +1,182 @@
+* {
+	image-rendering: pixelated;
+}
+#mainheader {
+	height:50%;
+}
+#graphic {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:60%;
+	height:50%;
+	border: 1px solid black;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+#uitabs {
+	position:absolute;
+	top:0px;
+	left:60%;
+	width:39.5%;
+	height:60%;
+}
+#terminal {
+	position:absolute;
+	top:50%;
+	left:0px;
+	width:60%;
+	height:49.5%;
+	border: 1px solid red;
+	font-family: 'Roboto Mono', monospace;
+}
+#inventory {
+	position:absolute;
+	top:60%;
+	left:60.1%;
+	width:39.9%;
+	height:39.5%;
+	font-family: 'Bitter', serif;
+}
+#graphichud {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	border: 1px solid cyan;
+	height: 10%;
+	width: 25%;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+#shoptab {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 71%;
+	border: 1px solid black;
+	height: 10%;
+	width: 28%;
+	font-family: 'Arimo', sans-serif;
+}
+#craftingtab {
+	position: absolute;
+	top: 0px;
+	left: 28%;
+	border: 1px solid black;
+	height: 10%;
+	width: 27%;
+	font-family: 'Arimo', sans-serif;
+}
+#achievementstab {
+	position: absolute;
+	top: 0px;
+	left: 55%;
+	border: 1px solid black;
+	height: 10%;
+	width: 45.9%;
+	font-family: 'Arimo', sans-serif;
+}
+#shop {
+	position: absolute;
+	top: 10.5%;
+	left: 0px;
+	border: 1px solid black;
+	height: 89%;
+	width: 100.9%;
+	font-family: 'Merriweather', serif;
+	background: #ffffff url("../imgassets/starbackground.gif") repeat right top;
+}
+#crafting {
+	position: absolute;
+	top: 10.5%;
+	left: 0px;
+	border: 1px solid cyan;
+	height: 89%;
+	width: 100.9%;
+	font-family: 'Merriweather', serif;
+}
+#achievements {
+	position: absolute;
+	top: 10.5%;
+	left: 0px;
+	border: 1px solid cyan;
+	height: 89%;
+	width: 100.9%;
+	font-family: 'Merriweather', serif;
+}
+#terminalinput {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	border: 1px solid orange;
+	height: 20%;
+	width: 100%;
+	font-family: 'Roboto Mono', monospace;
+}
+.icons {
+  image-rendering: pixelated; 
+  height: 32px;
+  float: right;
+}
+.uitabs {
+  background-color: hsla(0, 0%, 30%, 1);
+  color:white;
+  -o-transition:.25s;
+  -ms-transition:.25s;
+  -moz-transition:.25s;
+  -webkit-transition:.25s;
+  transition:.25s;
+}
+.uitabtext {
+  font-family: 'Ubuntu', sans-serif;
+}
+.uitabs:hover {
+  background-color: hsla(0, 0%, 40%, 1);
+  color: hsla(0, 35%, 80%, .50);
+  cursor: pointer;
+}
+.tabcontent {
+  background-color: hsla(0, 0%, 30%, 1);
+  color:white;
+  font-family: 'Julius Sans One', sans-serif;
+  -o-transition:.25s;
+  -ms-transition:.25s;
+  -moz-transition:.25s;
+  -webkit-transition:.25s;
+  transition:.25s;
+}
+
+.common {
+  color: #ACBED8;
+}
+.uncommon {
+  color: #568259;
+}
+.very_uncommon {
+  color: #8DB48F;
+}
+.rare {
+  color: #3185FC;
+}
+.very_rare {
+  color: #EFBCD5;
+}
+.extremely_rare {
+  color: #F374AE;
+}
+.legendary {
+  color: #E5B25D;
+}
+.mythical {
+  color: #9A031E;
+}
+.shopstockdata .shopstocktooltiptext {
+  font-family: 'Rokkitt', serif;
+}
+.insightful {
+  color: #7d00eb;
+}
+span #blueportal {
+  color:#0052e0;
+}
+span #orangeportal {
+  color:#e04f00;
+}

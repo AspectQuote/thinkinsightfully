@@ -1,0 +1,90 @@
+#inventory {
+  font-family: 'Cabin', sans-serif;
+  background-color: #555;
+  color:white;
+}
+#inventorybanner {
+  position: absolute;
+  height: 20%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  font-size: 33px;
+  text-align: center;
+}
+#inventorymain {
+  top: 20%;
+  position: absolute;
+  width: 100%;
+  height:80%;
+  display: inline-block;
+}
+.inventoryslot {
+   position: absolute;
+   width: 64px;
+   height:64px;
+   -o-transition:.25s;
+  -ms-transition:.25s;
+  -moz-transition:.25s;
+  -webkit-transition:.25s;
+  transition:.25s;
+}
+.inventoryslot:hover {
+  background-color: hsla(148, 0%, 38%, .35);
+  color: hsla(0, 35%, 80%, .1);
+  cursor: pointer;
+}
+#inventoryslot0 {
+   left: 15%;
+   top: 10%;
+}
+#inventoryslot1 {
+   left: 30%;
+   top: 10%;
+}
+#inventoryslot2 {
+   left: 45%;
+   top: 10%;
+}
+#inventoryslot3 {
+   left: 60%;
+   top: 10%;
+}
+#inventoryslot4 {
+   left: 75%;
+   top: 10%;
+}
+#inventoryslot5 {
+   left: 15%;
+   top: 51%;
+}
+#inventoryslot6 {
+  left: 30%;
+   top: 51%;
+}
+#inventoryslot7 {
+  left: 45%;
+   top: 51%;
+}
+#inventoryslot8 {
+  left: 60%;
+   top: 51%;
+}
+#inventoryslot9 {
+   left: 75%;
+   top: 51%;
+}
+.inventoryamountdisplay {
+  position: absolute;
+  bottom: 0px; 
+  left: 0px;
+  color: white;
+  -o-transition:.25s;
+  -ms-transition:.25s;
+  -moz-transition:.25s;
+  -webkit-transition:.25s;
+  transition:.25s;
+}
+.inventoryslot:hover .inventoryamountdisplay {
+  color: #ffc7c7;
+}
