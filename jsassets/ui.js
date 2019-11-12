@@ -75,7 +75,9 @@ showonlyshoptab()
 
 //shopkeep display js
 function getinnerwidthminusthegifwidth() {
-	return (window.innerWidth*0.13)-24
+	halfshopwidth = $("#shop").width()/2
+	halfshopkeepgifwidth = $("#shopkeepgif").width()/2
+	return halfshopwidth-$("#shopkeepgif").width()+halfshopkeepgifwidth
 }
 $("#shopkeepgif").css("left", getinnerwidthminusthegifwidth())
 

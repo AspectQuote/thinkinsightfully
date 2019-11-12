@@ -5,11 +5,14 @@ if (devmode == true) {
 } else {
 	user = 'player'
 }
-player.inventory.push({item: potato, amount: 2})
-player.inventory.push({item: greenonion, amount: 2})
-player.inventory.push({item: butter, amount: 2})
+give("item", 2, greenonion)
+give("item", 2, potato)
+give("item", 2, butter)
+give("item", 27, notch)
+give("item", 1, sandvich)
 updateinventorydisplay()
 updateallinventoryclickables()
 showcraftingtab()
+updatecraftingdisplay()
 devlog("touchups script ran!")
 devlog("All done after "+devlogcount+" notes!")
