@@ -24,9 +24,13 @@ function flipacoin() {
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms))
 }
-function devlog(logme) {
+function devlog(logme, important) {
 	if (devmode == true){
-		console.log(logme)
+		if (important == true) {
+			console.log('%c ' + logme, "color:orange; font-weight: bold;")
+		} else {
+			console.log(logme)
+		}
 		devlogcount++
 		return devlogcount
 	}

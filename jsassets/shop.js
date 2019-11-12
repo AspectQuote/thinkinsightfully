@@ -28,7 +28,8 @@ function getsellables(howmany) {
 				cannotaddtosellables = false                                                    // reset the loop
 				i--                                                                             // run the master loop again so that we will always return the same amount of items as described in the howmany argument of the function
 			}                                                                                   // ...
-		}                                                                                       // ...
+		}  
+		devlog("logging sellables at line #32...")                                                                                     // ...
 		devlog(sellables)                                                                       // return the sellables to ensure accuracy
 	} else {                                                                                    // if the user decided to try and mess stuff up, tell them they failed, and that they should be doing more exciting things
 		devlog("woah there, pardner! you could've crashed everything! I stopped you, but you should be more careful next time!") // ^^^
@@ -75,6 +76,7 @@ function stockthestore(stocknumber) {
 			}
 		}
 	}
+	devlog("logging stock at line #79...")
 	devlog(stock)                                                                           // log the stock to ensure accuracy and debugging
 }
 // DISPLAY THE STOCK OF THE STORE
@@ -124,6 +126,7 @@ function applyclickpurchase() {
 	devlog("applied the click to purchase!")
 }
 //PURCHASE FUNCTION
+var dontaddinv;
 var noitemsleft;
 var noitemcounter;
 function purchase(index, whom) {                                                                            // at last, the purchsing function
@@ -134,7 +137,22 @@ function purchase(index, whom) {                                                
 				if (index == i){                                                                            // checks if the item is the bought item
 					devlog("ladies and gentlemen. We got 'em. "+stock[i].name+" was bought by the player.") // logs the item in question
 					newstock.push(noitem)                                                                   // indirectly removes the item from the shop pool by adding no item to the shop instead of the item
-					player.inventory.push(stock[i])                                                         // adds the item to the player's inventory
+					dontaddinv = false;
+					for (o=0; o < player.inventory.length; o++) {
+						if (player.inventory[o].item.name == stock[i].name){
+							dontaddinv = true
+						}
+					}
+					if (dontaddinv == false) {
+						player.inventory.push({item: stock[i], amount: 1})                              // adds the item to the player's inventory
+						devlog("added the "+stock[i].name)
+					} else if (dontaddinv == true) {
+						for (o=0; o < player.inventory.length; o++) {
+							if (player.inventory[o].item.name == stock[i].name){
+								player.inventory[o].amount += 1
+							}
+						}
+					}
 					player.money -= stock[i].shop_price                                                     // takes the player's money in exchange
 					devlog("added the purchased item to the player's inventory!")                           // logs it for debugging
 					//add update inventory display function here
@@ -145,7 +163,9 @@ function purchase(index, whom) {                                                
 			}                                                                                               
 			stock = newstock                                                                                // set the stock to the new stock, removing the purchased item
 			displayshopstock()                                                                              // update the stock's display
-			applyclickpurchase()                                                                            // re-add the purchasing jquery
+			applyclickpurchase() 
+			updateinventorydisplay()
+			updateallinventoryclickables()                                                                           // re-add the purchasing jquery
 		} else {                                                                                            // if the player doesn't have enough money,
 			devlog("not enough money on the player's part! (add this to the terminal later!)")              // log it
 			//Add flavor text in the terminal for this, from the shopkeep

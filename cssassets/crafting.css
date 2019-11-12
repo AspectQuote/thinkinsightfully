@@ -1,0 +1,138 @@
+.craftingpossibs {
+	display: inline-block;
+	position: absolute;
+    width: 64px;
+    height:64px;
+}
+.craftingpossibs:hover {
+    cursor: pointer;
+}
+#craftingheader {
+	text-align: center;
+}
+#craftingpossib0 {
+   left: 15%;
+   top: 40%;
+}
+#craftingpossib1 {
+   left: 30%;
+   top: 40%;
+}
+#craftingpossib2 {
+   left: 45%;
+   top: 40%;
+}
+#craftingpossib3 {
+   left: 60%;
+   top: 40%;
+}
+#craftingpossib4 {
+   left: 75%;
+   top: 40%;
+}
+#craftingpossib5 {
+   left: 15%;
+   top: 71%;
+}
+#craftingpossib6 {
+  left: 30%;
+   top: 71%;
+}
+#craftingpossib7 {
+  left: 45%;
+   top: 71%;
+}
+#craftingpossib8 {
+  left: 60%;
+   top: 71%;
+}
+#craftingpossib9 {
+   left: 75%;
+   top: 71%;
+}
+.craftingpossibs .craftingpossibtooltip {
+  visibility: hidden;
+  /*width: 150px; */
+  background-color: #000;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: 35%;
+  right: 105%; 
+  color:white;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 13px;
+  font-style: italic;
+}
+/* Tooltip arrow */
+.craftingpossibs .craftingpossibtooltip::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 98%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #000;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.craftingpossibs:hover .craftingpossibtooltip {
+  visibility: visible;
+  opacity: .9;
+}
+/*_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_- */
+.craftingselecteds .craftingselectedtooltip {
+  visibility: hidden;
+  /*width: 150px; */
+  background-color: #000;
+  color: #000;
+  text-align: center;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: left;
+  padding-left: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: 0.5%;
+  left: 0.5%; 
+  color:white;
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 13px;
+  font-style: italic;
+}
+/* Tooltip arrow 
+.craftingselecteds .craftingselectedtooltip::after {
+  content: " ";
+  position: absolute;
+  top: 49.3%;
+  left: 99%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #000;
+}
+*/
+/* Show the tooltip text when you mouse over the tooltip container */
+.craftingselecteds:hover .craftingselectedtooltip {
+  visibility: visible;
+  opacity: .9;
+}
+.craftingselecteds:hover {
+  cursor: pointer;
+}

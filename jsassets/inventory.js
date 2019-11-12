@@ -18,7 +18,7 @@ function updateinventorydisplay() {                               // updating th
 		// BELOW: add the image to the inventory container
 		$("#inventorymain").append("<div id='inventoryslot"+i+"' class='inventoryslot' styles='top: 0px;'><img src='"+dispinventory[i].item.icon+"' width='64px' height='64px' /><span class='inventorytooltiptext' id='inventorytooltiptext"+i+"'>"+dispinventory[i].item.tooltip+"</span></div>")
 		// BELOW: adds the 'count' to each of the items in the display, but not if the item is not stackable or not a consumable
-		if (dispinventory[i].item.name != "No Item" && dispinventory[i].item.type != "weapon" && dispinventory[i].item.type != "armor" && dispinventory[i].item.type != "ring") {
+		if (dispinventory[i].item.name != "No Item" && dispinventory[i].item.type != "weapon" && dispinventory[i].item.type != "armor" && dispinventory[i].item.type != "ring" && dispinventory[i].item.type != 'noitem') {
 			$("#inventoryslot"+i).append("<span class='inventoryamountdisplay'>"+dispinventory[i].amount+"</span>")
 		}
 		if (hintsmode == true) {                                  // adds extra stuff into the tooltip to make sure the player knows what to do
@@ -39,11 +39,11 @@ function updateinventorydisplay() {                               // updating th
 	
 }
 function createclickableequipable(e) {
-	$("#inventoryslot"+e).click(function() {equip(player.inventory[e].item); updateallinventoryclickables(e);})
+	$("#inventoryslot"+e).click(function() {equip(player.inventory[e].item);})
 	devlog("added clickability for an equipable at inventory slot #" + e)
 }                                                                                    //thanks user LogicalBranch on stack overflow for help with this!
 function createclickableconsumable(e) {
-	$("#inventoryslot"+e).click(function() {consumableuse(player.inventory[e].item); updateallinventoryclickables(e);})
+	$("#inventoryslot"+e).click(function() {consumableuse(player.inventory[e].item);})
 	devlog("added clickability for a consumable at inventory slot #" + e)
 }
 function updateallinventoryclickables() {                          // updates the clickables based on what type of item it is
