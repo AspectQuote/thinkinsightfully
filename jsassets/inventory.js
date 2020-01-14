@@ -1,74 +1,34 @@
-for (i=0; i < 10; i++) {
-	$("#inventorymain").append("<div id='inventoryslot"+i+"' class='inventoryslot' styles='top: 0px;'><img src='imgassets/blankicon.gif' width='64px' height='64px' /></div>")
+for (i=0; i < player.inventory.length; i++) {
+	$("#inventorymain").append("<img src="+player.inventory[i].item.icon+" width=48px />")
 }
-var dispinventory;
-function updateinventorydisplay() {                               // updating the inventory html
-	dispinventory = []                                            // reset the display inventory (includes empty spaces)
-	$("#inventorymain").html('')                                  // reset the inventory container so that we can keep 
-	for (i=0; i < player.inventory.length; i++) {                 // loop
-		dispinventory.push(player.inventory[i])                   // adds all the contents of the players inventory into the display one
-	}
-	if (dispinventory.length < 10) {                              // checks whether the display inventory has less than ten items 
-		loopdisp = 10-dispinventory.length                        // determine how many less
-		for (i=0; i < loopdisp; i++) {                            // loop until the display inventory has 10 items
-			dispinventory.push({item: noinvitem, amount:1})       // add 'noitem' to that slot for display reasons
-		} 
-	} 
-	for (i=0; i < 10; i++) {                                      // loop again, brother
-		// BELOW: add the image to the inventory container
-		$("#inventorymain").append("<div id='inventoryslot"+i+"' class='inventoryslot' styles='top: 0px;'><img src='"+dispinventory[i].item.icon+"' width='64px' height='64px' /><span class='inventorytooltiptext' id='inventorytooltiptext"+i+"'>"+dispinventory[i].item.tooltip+"</span></div>")
-		// BELOW: adds the 'count' to each of the items in the display, but not if the item is not stackable or not a consumable
-		if (dispinventory[i].item.name != "No Item" && dispinventory[i].item.type != "weapon" && dispinventory[i].item.type != "armor" && dispinventory[i].item.type != "ring" && dispinventory[i].item.type != 'noitem') {
-			$("#inventoryslot"+i).append("<span class='inventoryamountdisplay'>"+dispinventory[i].amount+"</span>")
+function updateinventorydisplay() {
+	$("#inventorymain").html('')
+	$("#inventorymain").append('<div id=inventorydivider1></div>')
+	$("#inventorymain").append('<div id=inventorydivider2></div>')
+	$("#inventorymain").append('<div id=inventorydivider3></div>')
+	$("#inventorymain").append('<div id=inventorydivider4></div>')
+	$("#inventorymain").append('<div id=inventorydivider5></div>')
+	for (i=0; i < player.inventory.length; i++) {
+		if (i <= 10) {
+			$("#inventorydivider1").append("<div style='border: 1px solid "+player.inventory[i].item.color+"' class='inventoryslots' id=inventoryslot"+i+" ><span class='itemamount'>"+player.inventory[i].amount+"</span><span class='tooltip'><img src="+player.inventory[i].item.icon+" width=48px /><span id='inventorytooltip' class='tooltiptext'>"+player.inventory[i].item.tooltip+"</span></span></div>")
+		} else if(i >= 11 && i <= 22) {
+			$("#inventorydivider2").append("<div style='border: 1px solid "+player.inventory[i].item.color+"' class='inventoryslots' id=inventoryslot"+i+" ><span class='itemamount'>"+player.inventory[i].amount+"</span><span class='tooltip'><img src="+player.inventory[i].item.icon+" width=48px /><span id='inventorytooltip' class='tooltiptext'>"+player.inventory[i].item.tooltip+"</span></span></div>")
+		} else if(i >= 23 && i <= 34) {
+			$("#inventorydivider3").append("<div style='border: 1px solid "+player.inventory[i].item.color+"' class='inventoryslots' id=inventoryslot"+i+" ><span class='itemamount'>"+player.inventory[i].amount+"</span><span class='tooltip'><img src="+player.inventory[i].item.icon+" width=48px /><span id='inventorytooltip' class='tooltiptext'>"+player.inventory[i].item.tooltip+"</span></span></div>")
+		} else if(i >= 35 && i <= 46) {
+			$("#inventorydivider4").append("<div style='border: 1px solid "+player.inventory[i].item.color+"' class='inventoryslots' id=inventoryslot"+i+" ><span class='itemamount'>"+player.inventory[i].amount+"</span><span class='tooltip'><img src="+player.inventory[i].item.icon+" width=48px /><span id='inventorytooltip' class='tooltiptext'>"+player.inventory[i].item.tooltip+"</span></span></div>")
 		}
-		if (hintsmode == true) {                                  // adds extra stuff into the tooltip to make sure the player knows what to do
-			if(dispinventory[i].item.type == 'consumable'){       
-				$("#inventorytooltiptext"+i).append("LEFT CLICK to use")
-			} else if (dispinventory[i].item.type == 'armor') {   
-				$("#inventorytooltiptext"+i).append("LEFT CLICK to EQUIP in the ARMOR slot")
-			} else if (dispinventory[i].item.type == 'weapon') {  
-				$("#inventorytooltiptext"+i).append("LEFT CLICK to EQUIP in the WEAPON slot")
-			} else if (dispinventory[i].item.type == 'ring') {    
-				$("#inventorytooltiptext"+i).append("LEFT CLICK to EQUIP in the LEFT HAND RING slot, RIGHT CLICK to EQUIP in the RIGHT HAND RING slot")
-			} else {                                              
-				devlog("couldn't add a hint to slot #"+i+" because its type was not recognized!")
-			}
-		}                                                         //adds a border around every item based on its rarity
-		$("#inventoryslot"+i).css("border", "1px solid "+dispinventory[i].item.color)
+		createclickableinvslot(i)
 	}
-	
 }
-function createclickableequipable(e) {
-	$("#inventoryslot"+e).click(function() {equip(player.inventory[e].item);})
-	devlog("added clickability for an equipable at inventory slot #" + e)
-}                                                                                    //thanks user LogicalBranch on stack overflow for help with this!
-function createclickableconsumable(e) {
-	$("#inventoryslot"+e).click(function() {consumableuse(player.inventory[e].item);})
-	devlog("added clickability for a consumable at inventory slot #" + e)
-}
-function updateallinventoryclickables() {                          // updates the clickables based on what type of item it is
-	for (i=0; i < player.inventory.length; i++) {                  // loop
-		if(dispinventory[i] != noinvitem) {                        // checks whether the item according to the display inventory is no inventory item (to prevent extra lag)
-			if (player.inventory[i].item.type === 'weapon' || 'ring' || 'armor' && player.inventory[i].item.type !== 'consumable') {
-				devlog("the item is " + player.inventory[i].item.name + " with type " + player.inventory[i].item.type)
-				createclickableequipable(i)                        // creates the clickable in the other function, due to 'i' not saving to the function
-			}
-			if (player.inventory[i].item.type == 'consumable' ) {  
-				devlog("the item is " + player.inventory[i].item.name + " with type " + player.inventory[i].item.type)
-				createclickableconsumable(i)                       // creates the clickable in the other function, due to 'i' not saving to the function
-			} else {                                                                                             
-				devlog("unable to attach clickability to slot #" + i + " because the item had an invalid type!") // error message
-			}
-		} else {                                                                                            
-			devlog("didn't add clickability to inventory slot #" + i + " because there was no item there!") // error message
+          
+function createclickableinvslot(e) {
+	$("#inventoryslot"+e).unbind("click")
+	$("#inventoryslot"+e).click(function() {
+		if (terminalcooldown == false) {
+			player.inventory[e].item.use(e)
+			updateinventorydisplay()
 		}
-	}
-}
-function updateequipableinventoryclickable(e) {
-	$("#inventoryslot"+e).click(function() {equip(player.inventory[e].item); updateallinventoryclickables();})
-	devlog("added clickability for an equipable at inventory slot #" + e)
-}
-function updateconsumableinventoryclickable(e) {
-	$("#inventoryslot"+e).click(function() {consumableuse(player.inventory[e].item); updateallinventoryclickables();})
-	devlog("added clickability for an equipable at inventory slot #" + e)
-}
+	})
+	devlog("added clickability for inventory slot #" + e)
+}                                                                                    //thanks user LogicalBranch on stack overflow for help with this

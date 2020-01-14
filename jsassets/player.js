@@ -7,9 +7,9 @@ function Player(health, maxhealth, insight, exp, maxexp, level, money, inventory
 	this.level = level
 	this.money = money
 	this.inventory = inventory
-	this.equippedweapon = noinvitem;
-	this.equippedring = noinvitem;
-	this.equippedarmor = noinvitem;
+	this.equippedweapon = false;
+	this.equippedring = false;
+	this.equippedarmor = false;
 }
 var player = new Player(25, 25, 0, 0, 0, 1, 0, [])
 

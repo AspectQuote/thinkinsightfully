@@ -1,0 +1,5 @@
+narrator = new Character("Narrator", "red", "male", "white", "imgassets/narratoridle.png", "imgassets/narratortalking.png")
+commentator = new Character("Commentator", "teal", "male", "white", "imgassets/commentatorshut.png", "imgassets/commentatortalking.png")
+hamilton = new Character("Hamilton", "dark_gray", "male", "duck", "imgassets/hamiltonidle.png", "imgassets/hamiltontalking.png")
+whurmp = new Character("Whurmp", "peach", "female", "duck", "imgassets/whurmpidle.png", "imgassets/whurmptalking.png")
+robot = new Character("The Robot", "black", "male", "robot", "imgassets/robotidle.png", "imgassets/robottalking.png")

@@ -8,6 +8,7 @@ extremelyrareitems = []
 legendaryitems = []
 mythicalitems = []
 possiblybuggeditems = []
+shop_pool = []
 itemid = 0;
 common = "common"
 uncommon = "uncommon"
@@ -23,6 +24,7 @@ consumable = "consumable"
 armor = "armor"
 ring = "ring"
 weapon = "weapon"
+var cached_function
 //ITEM CONSTRUCTOR
 function Item(shop_price, icon) {
 	this.icon = icon                         // a path to an image asset
@@ -30,55 +32,130 @@ function Item(shop_price, icon) {
 } 
 function dootheritemstuff(item){
 	if (devmode == true) {
-		item.tier = "<br/><p class="+item.rarity+">"+item.rarity+"</p>"
+		item.tier = "<p class="+item.rarity+">"+item.rarity+"</p>"
 	} else { 
 		item.tier = ''
 	}
-	item.tooltip = "<h3 class="+item.rarity+">"+item.name+"</h3><p>"+item.description+"</p>"+item.tier
-	item.shoptooltip = "<h3 class="+item.rarity+">"+item.name+"</h3><p>"+item.shop_description+"</p><p>"+item.shop_price+" <img src='imgassets/coin16.png' width=16px /></p>"+item.tier
+	item.tooltip = "<p class="+item.rarity+">"+item.name+"</p><p>"+item.description+"</p>"+item.tier
+	item.shoptooltip = "<p class="+item.rarity+">"+item.name+" <span style='color: white;'> ("+item.shop_price+" <img src='imgassets/coin16.png' width=16px />) </span></p><p class='descriptiontext'>"+item.shop_description+"</p>"+item.tier
 	itemid++
 	item.internalid = itemid
 	devlog("Initialized the "+item.name+" item!")
+	if (item.issoldinshop == yes) {
+		shop_pool.push(item)
+	}
 	item.addtoitempools = function(){
 	allitems.push(item)
 	if (item.doiaddtoitempools == true) {
-		switch(this.rarity) {
+		switch(item.rarity) {
 					case "common":
 						commonitems.push(item)
-						this.color = dispcolorcommon
+						item.color = dispcolorcommon
 					break;
 					case "uncommon":
 						uncommonitems.push(item)
-						this.color = dispcoloruncommon
+						item.color = dispcoloruncommon
 					break;
 					case "very_uncommon":
 						veryuncommonitems.push(item)
-						this.color = dispcolorveryuncommon
+						item.color = dispcolorveryuncommon
 					break;
 					case "rare":
 						rareitems.push(item)
-						this.color = dispcolorrare
+						item.color = dispcolorrare
 					break;
 					case "very_rare":
 						veryrareitems.push(item)
-						this.color = dispcolorveryrare
+						item.color = dispcolorveryrare
 					break;
 					case "extremely_rare":
 						extremelyrareitems.push(item)
-						this.color = dispcolorextremelyrare
+						item.color = dispcolorextremelyrare
 					break;
 					case "legendary":
 						legendaryitems.push(item)
-						this.color = dispcolorlegendary
+						item.color = dispcolorlegendary
 					break;
 					case "mythical":
 						mythicalitems.push(item)
-						this.color = dispcolormythical
+						item.color = dispcolormythical
 					break;
 					default:
 						possiblybuggeditems.push(item)
 			}
 		}
+	}
+	switch (item.type) {
+		case 'consumable':
+			// the function should be declared just fine
+			// but dont forget to add the player.inventory.splice(e, 1)!
+		break;
+		case 'ring':
+			item.use = function(e) {
+				if(player.equippedring != false) {
+					narrator.say("You equip your "+item.name+" and place your other ring gently back in your inventory.")
+					player.inventory[e] = {item: player.equippedring, amount: 1}
+					player.equippedring = item
+				} else {
+					player.inventory.splice(e, 1)
+					player.equippedring = item
+					narrator.say("You equip your "+item.name)
+				}
+			}
+			item.takeoff = function() {
+				if(player.inventory.length < 22 && terminalcooldown == false) {
+					player.inventory.push({item: player.equippedring, amount: 1})
+					player.equippedring == false
+					narrator.say("You take off your ring.")
+				} else if (terminalcooldown == false) {
+					narrator.say("you would take off your ring, but you dont have enough space to carry it!")
+				}
+			}
+		break;
+		case 'weapon':
+			item.use = function(e) {
+				if(player.equippedweapon != false) {
+					narrator.say("You equip your "+item.name+" and place your other weapon back in your inventory.")
+					player.inventory[e] = {item: player.equippedweapon, amount: 1}
+					player.equippedweapon = item
+				} else {
+					player.inventory.splice(e, 1)
+					player.equippedweapon = item
+					narrator.say("You equip your "+item.name)
+				}
+			}
+			item.unequip = function() {
+				if(player.inventory.length < 22 && terminalcooldown == false) {
+					player.inventory.push({item: player.equippedweapon, amount: 1})
+					player.equippedweapon == false
+					narrator.say("You set aside your weapon.")
+				} else if (terminalcooldown == false) {
+					narrator.say("you would lay down your weapon, but you dont have enough space to carry it! (other than in your hand!)")
+				}
+			}
+		break;
+		case 'armor':
+			item.use = function(e) {
+				if(player.equippedarmor != false) {
+					narrator.say("You equip your "+item.name+" and place your other piece of armor back in your inventory.")
+					player.inventory[e] = {item: player.equippedarmor, amount: 1}
+					player.equippedarmor = item
+				} else {
+					player.inventory.splice(e, 1)
+					player.equippedarmor = item
+					narrator.say("You equip your "+item.name)
+				}
+			}
+			item.takeoff = function() {
+				if(player.inventory.length < 22 && terminalcooldown == false) {
+					player.inventory.push({item: player.equippedarmor, amount: 1})
+					player.equippedarmor == false
+					narrator.say("You take off your armor.")
+				} else if (terminalcooldown == false) {
+					narrator.say("you would take off your armor, but you dont have enough space to carry it!")
+				}
+			}
+		break;
 	}
 }
 
@@ -107,102 +184,6 @@ dootheritemstuff()
 .addtoitempools()
  */
 // Copypasta end
-// EQUIP FUNCTION
-var newinventory;
-function equip(item) {
-	switch (item.type) {
-		case "weapon":
-			devlog("attempting to equip item "+ item.name + " with type weapon!")
-			newinventory = []
-			for (i=0; i < player.inventory.length; i++) {
-				if (player.inventory[i].item.name != item.name) {
-					newinventory.push(player.inventory[i])
-				} else {
-					if (player.equippedweapon != noinvitem) {
-						newinventory.push(player.equippedweapon)
-					}
-					player.equippedweapon = player.inventory[i]
-				}
-			}
-			player.inventory = []
-			for (i=0; i < newinventory.length; i++) {
-				player.inventory.push(newinventory[i])
-			}
-			updateinventorydisplay()
-			updateallinventoryclickables()
-		break;
-		case "armor":
-			devlog("attempting to equip item "+ item.name + " with type armor!")
-			newinventory = []
-			for (i=0; i < player.inventory.length; i++) {
-				if (player.inventory[i].item.name != item.name) {
-					newinventory.push(player.inventory[i])
-				} else {
-					if (player.equippedarmor != noinvitem) {
-						newinventory.push(player.equippedarmor)
-					}
-					player.equippedarmor = player.inventory[i]
-				}
-			}
-			player.inventory = []
-			for (i=0; i < newinventory.length; i++) {
-				player.inventory.push(newinventory[i])
-			}
-			updateinventorydisplay()
-			updateallinventoryclickables()
-		break;
-		case "ring":
-			devlog("attempting to equip item "+ item.name + " with type ring!")
-			newinventory = []
-			for (i=0; i < player.inventory.length; i++) {
-				if (player.inventory[i].item.name != item.name) {
-					newinventory.push(player.inventory[i])
-				} else {
-					if (player.equippedring != noinvitem) {
-						newinventory.push(player.equippedring)
-					}
-					player.equippedring = player.inventory[i]
-				}
-			}
-			player.inventory = []
-			for (i=0; i < newinventory.length; i++) {
-				player.inventory.push(newinventory[i])
-			}
-			updateinventorydisplay()
-			updateallinventoryclickables()
-		break;
-		case "consumable":
-			//consumableuse(item)
-		break;
-		default:
-			deverror("uh ohhhh! you made an oopsie and the item you put into the function is unequipable!")
-	}
-}
-
-//CONSUMABLE USE FUNCTION
-function consumableuse(item) {
-	newinventory = []
-	if (item.type == "consumable") {
-		for (i=0; i < player.inventory.length; i++){
-			if (player.inventory[i].item.name != item.name){
-				newinventory.push(player.inventory[i])
-			} else {
-				if (player.inventory[i].amount <= 1) {
-					player.inventory[i].item.use()
-					// dont push anything
-				} else {
-					player.inventory[i].item.use()
-					newinventory.push({item: player.inventory[i].item, amount: player.inventory[i].amount-1})
-				}
-			}
-		}
-		player.inventory = newinventory
-		updateinventorydisplay()
-		updateallinventoryclickables()
-	} else {
-		deverror("Pardner.. the item you gave me to act for the consumable is.. not a consumable.")
-	}	
-}
 
 //DEVELOPER USE/EQUIP FUNCTIONS
 function forceuse(item) {
