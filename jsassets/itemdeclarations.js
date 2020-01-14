@@ -100,7 +100,7 @@ if (devmode == true) {
 	blanktestcommon.stackable = no
 	blanktestcommon.type = consumable
 	blanktestcommon.name = "Common blank"
-	blanktestcommon.use = function(){devlog("yeet I am a(n) "+ blanktestcommon.name)}
+	blanktestcommon.use = function(e){devlog("yeet I am a(n) "+ blanktestcommon.name)}
 	blanktestcommon.doiaddtoitempools = yes
 	dootheritemstuff(blanktestcommon)
 	blanktestcommon.addtoitempools()
@@ -113,7 +113,7 @@ if (devmode == true) {
 	blanktestuncommon.stackable = no
 	blanktestuncommon.type = consumable
 	blanktestuncommon.name = "Uncommon blank"
-	blanktestuncommon.use = function(){devlog("yeet I am a(n) "+ blanktestuncommon.name)}
+	blanktestuncommon.use = function(e){devlog("yeet I am a(n) "+ blanktestuncommon.name)}
 	blanktestuncommon.doiaddtoitempools = yes
 	dootheritemstuff(blanktestuncommon)
 	blanktestuncommon.addtoitempools()
@@ -126,7 +126,7 @@ if (devmode == true) {
 	blanktestvery_uncommon.stackable = no
 	blanktestvery_uncommon.type = consumable
 	blanktestvery_uncommon.name = "Very Uncommon blank"
-	blanktestvery_uncommon.use = function(){devlog("yeet I am a(n) "+ blanktestvery_uncommon.name)}
+	blanktestvery_uncommon.use = function(e){devlog("yeet I am a(n) "+ blanktestvery_uncommon.name)}
 	blanktestvery_uncommon.doiaddtoitempools = yes
 	dootheritemstuff(blanktestvery_uncommon)
 	blanktestvery_uncommon.addtoitempools()
@@ -139,7 +139,7 @@ if (devmode == true) {
 	blanktestrare.stackable = no
 	blanktestrare.type = consumable
 	blanktestrare.name = "Rare blank"
-	blanktestrare.use = function(){devlog("yeet I am a(n) "+ blanktestrare.name)}
+	blanktestrare.use = function(e){devlog("yeet I am a(n) "+ blanktestrare.name)}
 	blanktestrare.doiaddtoitempools = yes
 	dootheritemstuff(blanktestrare)
 	blanktestrare.addtoitempools()
@@ -152,7 +152,7 @@ if (devmode == true) {
 	blanktestvery_rare.stackable = no
 	blanktestvery_rare.type = consumable
 	blanktestvery_rare.name = "Very Rare blank"
-	blanktestvery_rare.use = function(){devlog("yeet I am a(n) "+ blanktestvery_rare.name)}
+	blanktestvery_rare.use = function(e){devlog("yeet I am a(n) "+ blanktestvery_rare.name)}
 	blanktestvery_rare.doiaddtoitempools = yes
 	dootheritemstuff(blanktestvery_rare)
 	blanktestvery_rare.addtoitempools()
@@ -165,7 +165,7 @@ if (devmode == true) {
 	blanktestextremely_rare.stackable = no
 	blanktestextremely_rare.type = consumable
 	blanktestextremely_rare.name = "Extremely Rare blank"
-	blanktestextremely_rare.use = function(){devlog("yeet I am a(n) "+ blanktestextremely_rare.name)}
+	blanktestextremely_rare.use = function(e){devlog("yeet I am a(n) "+ blanktestextremely_rare.name)}
 	blanktestextremely_rare.doiaddtoitempools = yes
 	dootheritemstuff(blanktestextremely_rare)
 	blanktestextremely_rare.addtoitempools()
@@ -178,7 +178,7 @@ if (devmode == true) {
 	blanktestlegendary.stackable = no
 	blanktestlegendary.type = consumable
 	blanktestlegendary.name = "Legendary blank"
-	blanktestlegendary.use = function(){devlog("yeet I am a(n) "+ blanktestlegendary.name)}
+	blanktestlegendary.use = function(e){devlog("yeet I am a(n) "+ blanktestlegendary.name)}
 	blanktestlegendary.doiaddtoitempools = yes
 	dootheritemstuff(blanktestlegendary)
 	blanktestlegendary.addtoitempools()
@@ -191,7 +191,7 @@ if (devmode == true) {
 	blanktestmythical.stackable = no
 	blanktestmythical.type = consumable
 	blanktestmythical.name = "Mythical blank"
-	blanktestmythical.use = function(){devlog("yeet I am a(n) "+ blanktestmythical.name)}
+	blanktestmythical.use = function(e){devlog("yeet I am a(n) "+ blanktestmythical.name)}
 	blanktestmythical.doiaddtoitempools = yes
 	dootheritemstuff(blanktestmythical)
 	blanktestmythical.addtoitempools()
@@ -205,21 +205,23 @@ coinpotion.shop_description = "This <i>interesting</i> drink will cause you to b
 coinpotion.stackable = yes
 coinpotion.type = consumable
 coinpotion.name = "Coin Potion"
-coinpotion.use = function(){devlog("I still need a use!")}
+coinpotion.use = function(e){player.money += 10; player.inventory.splice(e, 1); narrator.say("You down the mysterious golden liquid, and you feel your pockets get slightly heavier!"); }
 coinpotion.doiaddtoitempools = yes
+coinpotion.issoldinshop = yes
 dootheritemstuff(coinpotion)
 coinpotion.addtoitempools()
 
 exppotion = new Item(15, "imgassets/exppotion.png")
 exppotion.rarity = rare
 exppotion.craftable = no
-exppotion.description = "Experience Potion", "This blue brew contains a small dose of a drug called 'experience'. It will cause you to become more knowlegable quickly, and is commonly used by interplanetary politcians to make themselves have some semblance of a brain right before running for an office they realize they don't want after growing a noodle and a moral compass."
+exppotion.description = "This blue brew contains a small dose of a drug called 'experience'. It will cause you to become more knowlegable quickly, and is commonly used by interplanetary politcians to make themselves have some semblance of a brain right before running for an office they realize they don't want after growing a noodle and a moral compass."
 exppotion.shop_description = "My good sir! Have you ever wanted to not work so hard to become a more powerful being? If so, we have the perfect beverage for you! Take a sip of this  <i><b>AMAZING</b></i> potion and become more intelligent!"
 exppotion.stackable = yes
 exppotion.type = consumable
-exppotion.name = "Exp Potion"
-exppotion.use = function(){devlog("I still need a use!")}
+exppotion.name = "Experience Potion"
+exppotion.use = function(e){devlog("I still need a use!")}
 exppotion.doiaddtoitempools = yes
+exppotion.issoldinshop = yes
 dootheritemstuff(exppotion)
 exppotion.addtoitempools()
 
@@ -231,12 +233,13 @@ healthpotion.shop_description = "This cool and epic dink you've never seen anywh
 healthpotion.stackable = yes
 healthpotion.type = consumable
 healthpotion.name = "Health Potion"
-healthpotion.use = function(){devlog("I still need a use!")}
+healthpotion.use = function(e){devlog("I still need a use!")}
 healthpotion.doiaddtoitempools = yes
+healthpotion.issoldinshop = yes
 dootheritemstuff(healthpotion)
 healthpotion.addtoitempools()
 
-insightpotion = new Item(100, "imgassets/insightpotion.png")
+insightpotion = new Item(400, "imgassets/insightpotion.png")
 insightpotion.rarity = mythical
 insightpotion.craftable = no
 insightpotion.description = "A glass flask filled to the 3/4 point with liquefied <i class='insightful'>Insight</i>, an extremely rare substance that grants the user a minor step towards omnipotence. Ingesting this will lead to a minor increase to one's <i class='insightful'>Insight</i>."
@@ -244,8 +247,9 @@ insightpotion.shop_description = "Wowee, do I have a deal for you! This medium-s
 insightpotion.stackable = yes
 insightpotion.type = consumable
 insightpotion.name = "Insight Potion"
-insightpotion.use = function(){devlog("I still need a use!")}
+insightpotion.use = function(e){devlog("I still need a use!")}
 insightpotion.doiaddtoitempools = yes
+insightpotion.issoldinshop = yes
 dootheritemstuff(insightpotion)
 insightpotion.addtoitempools()
 
@@ -257,8 +261,9 @@ irondagger.shop_description = "This awesome little knife is just what you'd need
 irondagger.stackable = no
 irondagger.type = weapon
 irondagger.name = "Iron Dagger"
-irondagger.use = function(){devlog("I still need a use!")}
+irondagger.use = function(e){devlog("I still need a use!")}
 irondagger.doiaddtoitempools = yes
+irondagger.issoldinshop = yes
 dootheritemstuff(irondagger)
 irondagger.addtoitempools()
 
@@ -270,8 +275,9 @@ ironsword.shop_description = "This great edge is the perfect thing to use when a
 ironsword.stackable = no
 ironsword.type = weapon
 ironsword.name = "Iron Sword"
-ironsword.use = function(){devlog("I still need a use!")}
+ironsword.use = function(e){devlog("I still need a use!")}
 ironsword.doiaddtoitempools = yes
+ironsword.issoldinshop = yes
 dootheritemstuff(ironsword)
 ironsword.addtoitempools()
 
@@ -283,8 +289,9 @@ ironarmor.shop_description = "This plate armor is made of Iron! It will protect 
 ironarmor.stackable = no
 ironarmor.type = consumable
 ironarmor.name = "Iron Armor"
-ironarmor.use = function(){devlog("I still need a use!")}
+ironarmor.use = function(e){devlog("I still need a use!")}
 ironarmor.doiaddtoitempools = yes
+ironarmor.issoldinshop = yes
 dootheritemstuff(ironarmor)
 ironarmor.addtoitempools()
 
@@ -296,8 +303,9 @@ ironring.shop_description = "This small metal piece of ironry (jewelry with no j
 ironring.stackable = no
 ironring.type = ring
 ironring.name = "Iron Ring"
-ironring.use = function(){devlog("I still need a use!")}
+ironring.use = function(e){devlog("I still need a use!")}
 ironring.doiaddtoitempools = yes
+ironring.issoldinshop = yes
 dootheritemstuff(ironring)
 ironring.addtoitempools()
 
@@ -309,8 +317,9 @@ ammobox.shop_description = "You good sir! You look like you could use some ammo!
 ammobox.stackable = no
 ammobox.type = consumable
 ammobox.name = "Ammo Box"
-ammobox.use = function(){devlog("I still need a use!")}
+ammobox.use = function(e){devlog("I still need a use!")}
 ammobox.doiaddtoitempools = yes
+ammobox.issoldinshop = yes
 dootheritemstuff(ammobox)
 ammobox.addtoitempools()
 
@@ -322,8 +331,9 @@ blowtorch.shop_description = "This AMAZING welder of unimaginable temperature ca
 blowtorch.stackable = no
 blowtorch.type = consumable
 blowtorch.name = "Blowtorch"
-blowtorch.use = function(){devlog("I still need a use!")}
+blowtorch.use = function(e){devlog("I still need a use!")}
 blowtorch.doiaddtoitempools = yes
+blowtorch.issoldinshop = yes
 dootheritemstuff(blowtorch)
 blowtorch.addtoitempools()
 
@@ -335,8 +345,9 @@ cake.shop_description = "Buy this delicious Cake now! It's really good!"
 cake.stackable = no
 cake.type = consumable
 cake.name = "Cake"
-cake.use = function(){devlog("I still need a use!")}
+cake.use = function(e){devlog("I still need a use!")}
 cake.doiaddtoitempools = yes
+cake.issoldinshop = no
 dootheritemstuff(cake)
 cake.addtoitempools()
 
@@ -348,8 +359,9 @@ potato.shop_description = "This is a potato! versatile in many foods! Very nice 
 potato.stackable = yes
 potato.type = consumable
 potato.name = "Potato"
-potato.use = function(){devlog("I still need a use!")}
+potato.use = function(e){devlog("I still need a use!")}
 potato.doiaddtoitempools = yes
+potato.issoldinshop = yes
 dootheritemstuff(potato)
 potato.addtoitempools()
 
@@ -361,12 +373,13 @@ counterfeitcurrency.shop_description = "You shouldn't be seeing this."
 counterfeitcurrency.stackable = no
 counterfeitcurrency.type = consumable
 counterfeitcurrency.name = "Counterfeit Currency"
-counterfeitcurrency.use = function(){devlog("I still need a use!")}
+counterfeitcurrency.use = function(e){devlog("I still need a use!")}
 counterfeitcurrency.doiaddtoitempools = yes
+counterfeitcurrency.issoldinshop = no
 dootheritemstuff(counterfeitcurrency)
 counterfeitcurrency.addtoitempools()
 
-greenonion = new Item(1, "imgassets/leek.png") //girls wanna drink wine
+greenonion = new Item(10, "imgassets/leek.png")
 greenonion.rarity = uncommon
 greenonion.craftable = yes
 greenonion.description = "A bunch of small green onions bundled together with a rubber band. These shallots are one of the best ingredients to anything that has a weak or bland flavor; providing optimal spice and crunch to your dish."
@@ -374,8 +387,9 @@ greenonion.shop_description = "Buy the Leek now. Very delicious, very crumch, ve
 greenonion.stackable = yes
 greenonion.type = consumable
 greenonion.name = "Leek"
-greenonion.use = function(){devlog("I still need a use!")}
+greenonion.use = function(e){devlog("I still need a use!")}
 greenonion.doiaddtoitempools = yes
+greenonion.issoldinshop = yes
 dootheritemstuff(greenonion)
 greenonion.addtoitempools()
 
@@ -387,8 +401,9 @@ butter.shop_description = "Hmm yes. Butter. Buy now pleas."
 butter.stackable = yes
 butter.type = consumable
 butter.name = "Butter"
-butter.use = function(){devlog("I still need a use!")}
+butter.use = function(e){devlog("I still need a use!")}
 butter.doiaddtoitempools = yes
+butter.issoldinshop = yes
 dootheritemstuff(butter)
 butter.addtoitempools()
 
@@ -400,8 +415,9 @@ eyesightpotion.shop_description = "This is a bottle that is very hard to fit ins
 eyesightpotion.stackable = yes
 eyesightpotion.type = consumable
 eyesightpotion.name = "Eyesight Potion"
-eyesightpotion.use = function(){devlog("I still need a use!")}
+eyesightpotion.use = function(e){devlog("I still need a use!")}
 eyesightpotion.doiaddtoitempools = yes
+eyesightpotion.issoldinshop = yes
 dootheritemstuff(eyesightpotion)
 eyesightpotion.addtoitempools()
 
@@ -413,8 +429,9 @@ slime.shop_description = "This is a small piece of jelly, commonly associated wi
 slime.stackable = yes
 slime.type = consumable
 slime.name = "Slime"
-slime.use = function(){devlog("I still need a use!")}
+slime.use = function(e){devlog("I still need a use!")}
 slime.doiaddtoitempools = yes
+slime.issoldinshop = no
 dootheritemstuff(slime)
 slime.addtoitempools()
 
@@ -426,8 +443,9 @@ lasersword.shop_description = "This is a laser-sword. It is no longer manufactur
 lasersword.stackable = no
 lasersword.type = weapon
 lasersword.name = "Laser Sword"
-lasersword.use = function(){devlog("I still need a use!")}
+lasersword.use = function(e){devlog("I still need a use!")}
 lasersword.doiaddtoitempools = yes
+lasersword.issoldinshop = yes
 dootheritemstuff(lasersword)
 lasersword.addtoitempools()
 
@@ -439,8 +457,9 @@ bakedpotato.shop_description = "You shouldn't be seeing this."
 bakedpotato.stackable = yes
 bakedpotato.type = consumable
 bakedpotato.name = "Baked Potato"
-bakedpotato.use = function(){devlog("I still need a use!")}
+bakedpotato.use = function(e){devlog("I still need a use!")}
 bakedpotato.doiaddtoitempools = yes
+bakedpotato.issoldinshop = no
 dootheritemstuff(bakedpotato)
 bakedpotato.addtoitempools()
 
@@ -452,8 +471,9 @@ eye.shop_description = "You shouldn't be seeing this."
 eye.stackable = yes
 eye.type = consumable
 eye.name = "Eyeball"
-eye.use = function(){devlog("I still need a use!")}
+eye.use = function(e){devlog("I still need a use!")}
 eye.doiaddtoitempools = yes
+eye.issoldinshop = no
 dootheritemstuff(eye)
 eye.addtoitempools()
 
@@ -465,8 +485,9 @@ sandvich.shop_description = "This is one of the <i>limited</i> sandviches left i
 sandvich.stackable = no
 sandvich.type = consumable
 sandvich.name = "Sandvich"
-sandvich.use = function(){devlog("I still need a use!")} //heals the player for 300 hp
+sandvich.use = function(e){devlog("I still need a use!")} //heals the player for 300 hp
 sandvich.doiaddtoitempools = yes
+sandvich.issoldinshop = yes
 dootheritemstuff(sandvich)
 sandvich.addtoitempools()
 
@@ -478,8 +499,9 @@ croissant.shop_description = "This is a croissant. It expired a REALLY REALLY lo
 croissant.stackable = no
 croissant.type = ring
 croissant.name = "Croissant"
-croissant.use = function(){devlog("I still need a use!")} // a bracelet. increases defense slightly (the only thing in the ring slot that can do this.)
+croissant.use = function(e){devlog("I still need a use!")} // a bracelet. increases defense slightly (the only thing in the ring slot that can do this.)
 croissant.doiaddtoitempools = yes
+croissant.issoldinshop = yes
 dootheritemstuff(croissant)
 croissant.addtoitempools()
 
@@ -491,8 +513,9 @@ notch.shop_description = "I don't know what this is. Just buy it."
 notch.stackable = yes
 notch.type = consumable
 notch.name = "Notch"
-notch.use = function(){devlog("I still need a use!")} // rolls randomly for a random effect. 
+notch.use = function(e){devlog("I still need a use!")} // rolls randomly for a random effect. 
 notch.doiaddtoitempools = yes
+notch.issoldinshop = yes
 dootheritemstuff(notch)
 notch.addtoitempools()
 
@@ -504,8 +527,9 @@ gamblersnotch.shop_description = "You shouldn't be seeing this."
 gamblersnotch.stackable = yes
 gamblersnotch.type = consumable
 gamblersnotch.name = "Gambler's Notch"
-gamblersnotch.use = function(){devlog("I still need a use!")} // rolls randomly for a random effect. 
+gamblersnotch.use = function(e){devlog("I still need a use!")} // rolls randomly for a random effect. 
 gamblersnotch.doiaddtoitempools = yes
+gamblersnotch.issoldinshop = no
 dootheritemstuff(gamblersnotch)
 gamblersnotch.addtoitempools()
 
@@ -517,8 +541,9 @@ highrollersnotch.shop_description = "You shouldn't be seeing this."
 highrollersnotch.stackable = yes
 highrollersnotch.type = consumable
 highrollersnotch.name = "High Roller's Notch"
-highrollersnotch.use = function(){devlog("I still need a use!")} // rolls randomly for a random effect. 
+highrollersnotch.use = function(e){devlog("I still need a use!")} // rolls randomly for a random effect. 
 highrollersnotch.doiaddtoitempools = yes
+highrollersnotch.issoldinshop = no
 dootheritemstuff(highrollersnotch)
 highrollersnotch.addtoitempools()
 
@@ -530,8 +555,9 @@ notchofthesoothsayer.shop_description = "You shouldn't be seeing this."
 notchofthesoothsayer.stackable = yes
 notchofthesoothsayer.type = consumable
 notchofthesoothsayer.name = "Notch of The Soothsayer"
-notchofthesoothsayer.use = function(){devlog("I still need a use!")} // rolls randomly for a random effect. 
+notchofthesoothsayer.use = function(e){devlog("I still need a use!")} // rolls randomly for a random effect. 
 notchofthesoothsayer.doiaddtoitempools = yes
+notchofthesoothsayer.issoldinshop = no
 dootheritemstuff(notchofthesoothsayer)
 notchofthesoothsayer.addtoitempools()
 
@@ -543,8 +569,9 @@ haybale.shop_description = "You shouldn't be seeing this."
 haybale.stackable = no
 haybale.type = consumable // CHANGE TO 'QUEST' LATER
 haybale.name = "Hay Bale"
-haybale.use = function(){devlog("I still need a use!")}
+haybale.use = function(e){devlog("I still need a use!")}
 haybale.doiaddtoitempools = no
+haybale.issoldinshop = no
 dootheritemstuff(haybale)
 haybale.addtoitempools()
 
@@ -556,8 +583,9 @@ tealeaves.shop_description = "Some tea leaves; they re still very good, you want
 tealeaves.stackable = yes
 tealeaves.type = consumable
 tealeaves.name = "Tea Leaves"
-tealeaves.use = function(){devlog("I still need a use!")}
+tealeaves.use = function(e){devlog("I still need a use!")}
 tealeaves.doiaddtoitempools = yes
+tealeaves.issoldinshop = yes
 dootheritemstuff(tealeaves)
 tealeaves.addtoitempools()
 
@@ -569,8 +597,9 @@ storminabottle.shop_description = "you shouldnt be seeing this"
 storminabottle.stackable = no
 storminabottle.type = consumable
 storminabottle.name = "Storm In A Bottle"
-storminabottle.use = function(){devlog("I still need a use!")}
+storminabottle.use = function(e){devlog("I still need a use!")}
 storminabottle.doiaddtoitempools = no
+storminabottle.issoldinshop = no
 dootheritemstuff(storminabottle)
 storminabottle.addtoitempools()
 
@@ -582,8 +611,9 @@ dust.shop_description = "This is the finest dust you will ever buy! So please, g
 dust.stackable = yes
 dust.type = consumable
 dust.name = "Dust"
-dust.use = function(){devlog("I still need a use!")}
+dust.use = function(e){devlog("I still need a use!")}
 dust.doiaddtoitempools = yes
+dust.issoldinshop = yes
 dootheritemstuff(dust)
 dust.addtoitempools()
 
@@ -595,10 +625,55 @@ heartcrystal.shop_description = "This is a very interesting item; I'm not exactl
 heartcrystal.stackable = yes
 heartcrystal.type = consumable
 heartcrystal.name = "Heart Crystal"
-heartcrystal.use = function(){devlog("I still need a use!")}
+heartcrystal.use = function(e){devlog("I still need a use!")}
 heartcrystal.doiaddtoitempools = yes
+heartcrystal.issoldinshop = yes
 dootheritemstuff(heartcrystal)
 heartcrystal.addtoitempools()
+
+rottedbark = new Item(7, "imgassets/rottedbark.png")
+rottedbark.rarity = uncommon
+rottedbark.craftable = yes
+rottedbark.description = "This is just some old, nasty bark. You aren't sure why you have this, and it smells like sweaty feet or something like that. The tree-skin is very brittle; so you carry it gingerly."
+rottedbark.shop_description = "I'm not super sure why I have this; but I dont want it, so I'll discount it."
+rottedbark.stackable = yes
+rottedbark.type = consumable
+rottedbark.name = "Rotten Bark"
+rottedbark.use = function(e){devlog("I still need a use!")}
+rottedbark.doiaddtoitempools = yes
+rottedbark.issoldinshop = yes
+dootheritemstuff(rottedbark)
+rottedbark.addtoitempools()
+
+
+fuzzygloves = new Item(35, "imgassets/fuzzygloves.png")
+fuzzygloves.rarity = rare
+fuzzygloves.craftable = no
+fuzzygloves.description = "These are a pair of gloves that feel soft to the touch. They are surprisingly durable, and they are fairly nice to feel without putting them on."
+fuzzygloves.shop_description = "Buy this, they are nice and soft."
+fuzzygloves.stackable = no
+fuzzygloves.type = ring
+fuzzygloves.name = "Fuzzy Gloves"
+fuzzygloves.use = function(e){devlog("I still need a use!")}
+fuzzygloves.doiaddtoitempools = yes
+fuzzygloves.issoldinshop = yes
+dootheritemstuff(fuzzygloves)
+fuzzygloves.addtoitempools()
+
+visor = new Item(1, "imgassets/visor.png")
+visor.rarity = uncommon
+visor.craftable = no
+visor.description = "This is a shitty plastic visor made for tourists to 'see better' even though they're clear. When you tried this on, it felt really scratchy and poorly made. At least it was free."
+visor.shop_description = "you shouldn't be seeing this."
+visor.stackable = no
+visor.type = armor
+visor.name = "Visor"
+visor.use = function(e){devlog("I still need a use!")}
+visor.doiaddtoitempools = yes
+visor.issoldinshop = no
+dootheritemstuff(visor)
+visor.addtoitempools()
+
 /*
  = new Item(1, "imgassets/")
 .rarity =
@@ -608,8 +683,9 @@ heartcrystal.addtoitempools()
 .stackable =
 .type = consumable
 .name = ""
-.use = function(){devlog("I still need a use!")}
+.use = function(e){devlog("I still need a use!")}
 .doiaddtoitempools = yes
+.issoldinshop = yes
 dootheritemstuff()
 .addtoitempools()
  */
